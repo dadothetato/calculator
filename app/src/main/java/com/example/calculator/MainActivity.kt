@@ -1136,13 +1136,12 @@ fun convertEvaluatedExpressionToString(evaluatedExpression: Double): String {
         // Double value
         val numberOfSignificantDigits = 10
         var numberOfIntegerDigits = floor(log10(abs(evaluatedExpression))).toInt() + 1
-        if (numberOfIntegerDigits < 0) numberOfIntegerDigits = 0
+        if (numberOfIntegerDigits < 0) numberOfIntegerDigits = 1 // The starting 0 in 0. ...
 
         if (numberOfSignificantDigits > numberOfIntegerDigits) {
             val formatString = "%." + (numberOfSignificantDigits - numberOfIntegerDigits) + "f"
             removeTrailingZeros(formatString.format(evaluatedExpression))
         }
-        // numberOfSignificantDigits == numberOfIntegerDigits
         else {
             evaluatedExpression.roundToInt().toString()
         }
